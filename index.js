@@ -32,7 +32,7 @@ try {
 
   // Resolve Container Image tag value. If it is a release. tag will be the release name, 
   // otherwise it defaults to the commit sha
-  const contextRef = context.ref;
+  const contextRef = github.context.ref;
   const tagPrefix = "refs/tags/"
   // This removes the 'refs/tags' portion of the string, i.e. from 'refs/tags/v1.13.7' to 'v1.13.7'
   const imageTag = contextRef.startsWith(tagPrefix) ? contextRef.replace(tagPrefix, "") : github.context.sha
