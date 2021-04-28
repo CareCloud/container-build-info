@@ -14,7 +14,7 @@ try {
   // console.log(`The event payload: ${payload}`);
 
   //action
-  const containerRepo = github.context.repo.toLowerCase()
+  const containerRepo = github.repository.toLowerCase()
   console.log(`Container Repo: ${containerRepo}!`);
 
   core.setOutput("container-repo", time);
