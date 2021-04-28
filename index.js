@@ -14,7 +14,8 @@ try {
   // console.log(`The event payload: ${payload}`);
 
   //action
-  const containerRepo = github.repository.toLowerCase()
+  const repo = github.context.repo;
+  const containerRepo = `${repo.owner.toLowerCase()}/${repo.owner.toLowerCase()}`
   console.log(`Container Repo: ${containerRepo}!`);
 
   core.setOutput("container-repo", time);
