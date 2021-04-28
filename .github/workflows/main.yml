@@ -3,7 +3,7 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to test thangs
     steps:
       # To use this repository's private action,
       # you must check out the repository
@@ -12,8 +12,10 @@ jobs:
       - name: Get Container build info step
         uses: ./ # Uses an action in the root directory
         id: build-deps
-        # with:
-        #   who-to-greet: 'Mona the Octocat'
+        with:
+          image-name: 'Bananas'
       # Use the output from the `hello` step
       - name: Get the name of container repo
-        run: echo "The repo name was ${{ steps.hello.outputs.container-repo }}"
+        run: echo "The repo name was ${{ steps.build-deps.outputs.container-repo }}"
+      - name: Get the name of container image
+        run: echo "The image name was ${{ steps.build-deps.outputs.container-image-name }}"
