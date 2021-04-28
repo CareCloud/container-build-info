@@ -29,6 +29,10 @@ try {
   console.log(`Container Repo: ${containerRepo}!`);
 
 
+  const imageTag =  github.event.release.tag_name 
+  console.log(`Container Tag: ${imageTag}!`);
+  //github.event.release.tag_name || github.sha 
+
   // Set Outputs
   core.setOutput("container-repo", containerRepo);
   core.setOutput("container-image-name", imageName);
