@@ -15,10 +15,10 @@ try {
 
   //action
   const repo = github.context.repo;
-  const containerRepo = `${repo.owner.toLowerCase()}/${repo.owner.toLowerCase()}`
+  const containerRepo = `${repo.owner.toLowerCase()}/${repo.repo.toLowerCase()}`
   console.log(`Container Repo: ${containerRepo}!`);
 
-  core.setOutput("container-repo", time);
+  core.setOutput("container-repo", containerRepo);
 
 
 } catch (error) {
