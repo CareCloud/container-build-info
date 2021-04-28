@@ -29,8 +29,8 @@ try {
   console.log(`Container Repo: ${containerRepo}!`);
 
 
-  const imageTag =  github.event.release.tag_name 
-  console.log(`Container Tag: ${imageTag}!`);
+  const imageTag =  github.context.ref
+  console.log(`Container ref: ${imageTag}!`);
   //github.event.release.tag_name || github.sha 
 
   // Set Outputs
