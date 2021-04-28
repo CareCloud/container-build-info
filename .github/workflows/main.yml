@@ -13,7 +13,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: build-deps
         with:
-          image-name: 'Bananas'
+          image-name: Bananas
       # Use the output from the `hello` step
       - name: Get the name of container repo
         run: echo "The repo name was ${{ steps.build-deps.outputs.container-repo }}"
