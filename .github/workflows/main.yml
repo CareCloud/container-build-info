@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get Container build info step
+        uses: ./ # Uses an action in the root directory
+        id: build-deps
+        # with:
+        #   who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the name of container repo
+        run: echo "The repo name was ${{ steps.hello.outputs.container-repo }}"
