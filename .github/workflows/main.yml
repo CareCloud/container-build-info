@@ -15,7 +15,11 @@ jobs:
         with:
           image-name: Bananas
       # Use the output from the `hello` step
-      - name: Get the name of container repo
+      - name: Get the name of container repo 
         run: echo "The repo name was ${{ steps.build-deps.outputs.container-repo }}"
+      - name: Get the name of container repo owner
+        run: echo "The repo name was ${{ steps.build-deps.outputs.container-repo-owner }}"
       - name: Get the name of container image
         run: echo "The image name was ${{ steps.build-deps.outputs.container-image-name }}"
+      - name: Get the tag of container image
+        run: echo "The image name was ${{ steps.build-deps.outputs.container-image-tag }}"

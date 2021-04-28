@@ -10,8 +10,8 @@ try {
 
 
   // // Get the JSON webhook payload for the event that triggered the workflow
-  // const payload = JSON.stringify(github.context.payload, undefined, 2)
-  // console.log(`The event payload: ${payload}`);
+  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  console.log(`The event payload: ${payload}`);
 
   //action
 
@@ -23,11 +23,14 @@ try {
   const imageName = (inputImageName || repo.repo).toLowerCase();
   console.log(`Container Image: ${imageName}!`);
 
+  // Resolve Container Repository owner
+  const containerRepoOwner = repo.owner.toLowerCase()
+  console.log(`Container Repo: ${containerRepoOwner}!`);
+
 
   // Resolve Container Repository name
-  const containerRepo = `${repo.owner.toLowerCase()}/${imageName}`
+  const containerRepo = `${containerRepoOwner}/${imageName}`
   console.log(`Container Repo: ${containerRepo}!`);
-
 
 
   // Resolve Container Image tag value. If it is a release. tag will be the release name, 
@@ -41,6 +44,7 @@ try {
 
   // Set Outputs
   core.setOutput("container-repo", containerRepo);
+  core.setOutput("container-repo-owner", containerRepo);
   core.setOutput("container-image-name", imageName);
   core.setOutput("container-image-tag", imageTag);
 

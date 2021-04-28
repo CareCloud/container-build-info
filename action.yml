@@ -8,6 +8,8 @@ inputs:
 outputs:
   container-repo: # id of output
     description: 'The name of the container repository'
+  container-repo-owner: # id of output
+    description: 'The name of the container repository owner'
   container-image-name: # id of output
     description: 'The name of the container image'
   container-image-tag: # id of output
