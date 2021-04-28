@@ -10,6 +10,8 @@ outputs:
     description: 'The name of the container repository'
   container-image-name: # id of output
     description: 'The name of the container image'
+  container-image-tag: # id of output
+    description: 'The container image tag'
 runs:
   using: 'node12'
   main: 'index.js'
