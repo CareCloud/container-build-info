@@ -3,7 +3,7 @@ const github = require('@actions/github');
 
 try {
   // `who-to-greet` input defined in action metadata file
-  // const nameToGreet = core.getInput('who-to-greet');
+  
   // console.log(`Hello ${nameToGreet}!`);
   // const time = (new Date()).toTimeString();
   // core.setOutput("time", time);
@@ -14,11 +14,24 @@ try {
   // console.log(`The event payload: ${payload}`);
 
   //action
+
+
   const repo = github.context.repo;
-  const containerRepo = `${repo.owner.toLowerCase()}/${repo.repo.toLowerCase()}`
+  
+  // Resolve Container Image name
+  const inputImageName = core.getInput('image-name');
+  const imageName  = repo.repo.toLowerCase() || inputImageName;
+  console.log(`Container Image: ${imageName}!`);
+  
+
+  // Resolve Container Repository name
+  const containerRepo = `${repo.owner.toLowerCase()}/${imageName}`
   console.log(`Container Repo: ${containerRepo}!`);
 
+
+  // Set Outputs
   core.setOutput("container-repo", containerRepo);
+  core.setOutput("container-image-name", imageName);
 
 
 } catch (error) {

@@ -1,13 +1,15 @@
 name: 'Container Build Info'
 description: 'Generates Container Build Information, ex. image name, tag, owner, etc.'
-# inputs:
-#   image-name:  # id of input
-#     description: 'Who to greet'
-#     required: true
-#     default: 'World'
+inputs:
+  image-name:  # id of input
+    description: 'Name of the container images'
+    required: false
+  
 outputs:
   container-repo: # id of output
     description: 'The name of the container repository'
+  container-image-name: # id of output
+    description: 'The name of the container image'
 runs:
   using: 'node12'
   main: 'index.js'
