@@ -20,7 +20,7 @@ try {
   
   // Resolve Container Image name
   const inputImageName = core.getInput('image-name');
-  const imageName  = inputImageName || repo.repo.toLowerCase();
+  const imageName  = (inputImageName || repo.repo).toLowerCase();
   console.log(`Container Image: ${imageName}!`);
   
 
