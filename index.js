@@ -2,16 +2,10 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  // `who-to-greet` input defined in action metadata file
-
-  // console.log(`Hello ${nameToGreet}!`);
-  // const time = (new Date()).toTimeString();
-  // core.setOutput("time", time);
-
 
   // // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  // const payload = JSON.stringify(github.context.payload, undefined, 2)
+  // console.log(`The event payload: ${payload}`);
 
   //action
 
@@ -37,8 +31,10 @@ try {
   // otherwise it defaults to the commit sha
   const contextRef = github.context.ref;
   const tagPrefix = "refs/tags/"
+  const isTagged = contextRef.startsWith(tagPrefix)
+
   // This removes the 'refs/tags' portion of the string, i.e. from 'refs/tags/v1.13.7' to 'v1.13.7'
-  const imageTag = contextRef.startsWith(tagPrefix) ? contextRef.replace(tagPrefix, "") : github.context.sha
+  const imageTag = isTagged ? contextRef.replace(tagPrefix, "") : github.context.sha
   console.log(`Container Image tag: ${imageTag}!`);
 
 
@@ -56,7 +52,7 @@ try {
 
   // Resolve Infrastructure branch to be updated
   // if it is a tag select release branch otherwise select the development branch
-  const infrastructureBranch = contextRef.startsWith(tagPrefix) ? releaseInfraBranchName : developInfraBranchName
+  const infrastructureBranch = isTagged? releaseInfraBranchName : developInfraBranchName
   console.log(`Infrastructure branch to be updated: ${infrastructureBranch}!`);
 
 
