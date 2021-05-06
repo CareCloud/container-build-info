@@ -56,7 +56,7 @@ try {
 
   // Resolve Infrastructure branch to be updated
   const infrastructureBranch = github.context.eventName == "release" ? releaseInfraBranchName : developInfraBranchName
-  console.log(`Infrastructure branch to be updated: ${releaseInfraBranchName}!`);
+  console.log(`Infrastructure branch to be updated: ${infrastructureBranch}!`);
 
 
   // Set Outputs
