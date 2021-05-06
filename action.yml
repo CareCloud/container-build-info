@@ -2,18 +2,29 @@ name: 'Container Build Info'
 description: 'Generates Container Build Information, ex. image name, tag, owner, etc.'
 inputs:
   image-name:  # id of input
-    description: 'Name of the container images'
+    description: 'Name of the container image'
+    required: false
+  development-infrastructure-branch:  # id of input
+    description: 'Overrides the name of the development infrastructure branch. Defaults to `develop`'
+    required: false
+  release-infrastructure-branch:  # id of input
+    description: 'Overrides the name of the release infrastructure branch. Defaults to `qa`'
     required: false
   
 outputs:
-  container-repo: # id of output
+  container-repo:
     description: 'The name of the container repository'
-  container-repo-owner: # id of output
+  container-repo-owner:
     description: 'The name of the container repository owner'
-  container-image-name: # id of output
+  container-image-name:
     description: 'The name of the container image'
-  container-image-tag: # id of output
+  container-image-tag:
     description: 'The container image tag'
+  infrastructure-branch:
+    description: >
+      The infrastucture branch to be updated. If workflow was triggered by a tag 
+      it will be the `release` branch, otherwise it is the `development` branch
+  
 runs:
   using: 'node12'
   main: 'index.js'
