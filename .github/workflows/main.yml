@@ -14,6 +14,7 @@ jobs:
         id: build-deps
         with:
           image-name: Bananas
+          release-infrastructure-branch: awesome-work
       # Use the output from the `hello` step
       - name: Get the name of container repo 
         run: echo "The repo name was ${{ steps.build-deps.outputs.container-repo }}"
