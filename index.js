@@ -11,7 +11,7 @@ try {
 
   // // Get the JSON webhook payload for the event that triggered the workflow
   const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  // console.log(`The event payload: ${payload}`);
 
   //action
 
@@ -42,12 +42,29 @@ try {
   console.log(`Container Image tag: ${imageTag}!`);
 
 
+  // Resolve Development Infrastructure branch name
+  const inputDevelopInfraBranchName = core.getInput('development-infrastructure-branch');
+  const developInfraBranchName = inputDevelopInfraBranchName || 'develop';
+  console.log(`Development Infrastructure branch name: ${developInfraBranchName}!`);
+
+
+  // Resolve Release Infrastructure branch name
+  const inputReleaseInfraBranchName = core.getInput('release-infrastructure-branch');
+  const releaseInfraBranchName = inputReleaseInfraBranchName || 'qa';
+  console.log(`Release Infrastructure branch name: ${releaseInfraBranchName}!`);
+
+
+  // Resolve Infrastructure branch to be updated
+  const infrastructureBranch = github.context.eventName == "release" ? releaseInfraBranchName : developInfraBranchName
+  console.log(`Infrastructure branch to be updated: ${releaseInfraBranchName}!`);
+
+
   // Set Outputs
   core.setOutput("container-repo", containerRepo);
   core.setOutput("container-repo-owner", containerRepo);
   core.setOutput("container-image-name", imageName);
   core.setOutput("container-image-tag", imageTag);
-
+  core.setOutput("infrastructure-branch", infrastructureBranch);
 
 } catch (error) {
   core.setFailed(error.message);
