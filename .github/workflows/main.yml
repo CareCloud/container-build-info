@@ -22,5 +22,7 @@ jobs:
         run: echo "The repo name was ${{ steps.build-deps.outputs.container-repo-owner }}"
       - name: Get the name of container image
         run: echo "The image name was ${{ steps.build-deps.outputs.container-image-name }}"
+      - name: Get the name of container image tag
+        run: echo "The image name was ${{ steps.build-deps.outputs.container-image-tag }}"
       - name: Get the name of the infrastructure branch to be updated
         run: echo "The iname of the infrastructure branch to be updated ${{ steps.build-deps.outputs.infrastructure-branch }}"

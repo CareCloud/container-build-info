@@ -19,7 +19,7 @@ try {
 
   // Resolve Container Repository owner
   const containerRepoOwner = repo.owner.toLowerCase()
-  console.log(`Container Repo: ${containerRepoOwner}!`);
+  console.log(`Container Repo Owner: ${containerRepoOwner}!`);
 
 
   // Resolve Container Repository name
@@ -58,7 +58,7 @@ try {
 
   // Set Outputs
   core.setOutput("container-repo", containerRepo);
-  core.setOutput("container-repo-owner", containerRepo);
+  core.setOutput("container-repo-owner", containerRepoOwner);
   core.setOutput("container-image-name", imageName);
   core.setOutput("container-image-tag", imageTag);
   core.setOutput("infrastructure-branch", infrastructureBranch);
