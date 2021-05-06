@@ -55,8 +55,8 @@ try {
 
 
   // Resolve Infrastructure branch to be updated
-  console.log(`Event Name: ${github.context.eventName}`)
-  const infrastructureBranch = github.context.eventName == "release" ? releaseInfraBranchName : developInfraBranchName
+  // if it is a tag select release branch otherwise select the development branch
+  const infrastructureBranch = contextRef.startsWith(tagPrefix) ? releaseInfraBranchName : developInfraBranchName
   console.log(`Infrastructure branch to be updated: ${infrastructureBranch}!`);
 
 
